@@ -14,7 +14,6 @@ import java.util.Date;
 public class StaffDetailDto {
 
     private int id;
-    //   staff details
     private String employment_Status;
     private String staffType;
     private String staffDepartment;
@@ -24,30 +23,9 @@ public class StaffDetailDto {
     private String educationQualification;
     private String accessLevel;
     private String trainedAs;
-    private String CTET_Qualified;
+    private String ctet_Qualified;
 
-    //    personal details
-    private String firstName;
-    private String middleName;
-    private String lastName;
-    private Long mobileNumber;
-    private Long emergencyContactNumber;
-    private String gender;
-    @JsonFormat(pattern="dd-MM-yyyy")
-    private Date dob;
-    private String emailId;
-    private String permanentAddress;
-    private String correspondingAddress;
-    private String religion;
 
-//    other details
 
-    private String aadhaarNumber;
-    private String panNumber;
-    @JsonFormat(pattern="dd-MM-yyyy")
-    private Date dateOfJoining;
-    private String staffReferenceCode;
-    private String salaryPayType;
-    private String residentNumber;
-    private String citizenShip;
+
 }

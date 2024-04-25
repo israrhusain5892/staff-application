@@ -7,7 +7,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Data
@@ -16,8 +18,8 @@ import java.util.Date;
 public class StaffDetail {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-//   staff details
+    private int staffId;
+
     private String employment_Status;
     private String staffType;
     private String staffDepartment;
@@ -29,29 +31,8 @@ public class StaffDetail {
     private String trainedAs;
     private String CTET_Qualified;
 
-//    personal details
-    private String firstName;
-    private String middleName;
-    private String lastName;
-    private Long mobileNumber;
-    private Long emergencyContactNumber;
-    private String gender;
-    @JsonFormat(pattern="dd-MM-yyyy")
-    private Date dob;
-    private String emailId;
-    private String permanentAddress;
-    private String correspondingAddress;
-    private String religion;
+    @OneToMany(mappedBy = "staffDetail",cascade = CascadeType.ALL)
+    private List<PersonalDetail> personalDetailList=new ArrayList<>();
 
-//    other details
-
-    private String aadhaarNumber;
-    private String panNumber;
-    @JsonFormat(pattern="dd-MM-yyyy")
-    private Date dateOfJoining;
-    private String staffReferenceCode;
-    private String salaryPayType;
-    private String residentNumber;
-    private String citizenShip;
 
 }
