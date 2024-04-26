@@ -11,11 +11,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 
-
-
-    @RestController
+@RestController
     @RequestMapping("/other")
     public class OtherDetailController {
 
@@ -24,27 +23,27 @@ import java.util.List;
 
         @PostMapping("/add/{personalId}")
         public ResponseEntity<OtherDetailDto> addPersonalDetail(@RequestBody OtherDetailDto personalDetailDto,
-                                                                   @PathVariable int personalId) {
+                                                                   @PathVariable UUID personalId) {
             OtherDetailDto personalDetailDto1 = otherDetailService.addOtherDetail(personalDetailDto, personalId);
             return new ResponseEntity<>(personalDetailDto1, HttpStatus.CREATED);
         }
 
         @PutMapping("/{otherId}/{personalId}")
         public ResponseEntity<OtherDetailDto> updatePersonalDetail(@RequestBody OtherDetailDto otherDetailDto
-                , @PathVariable int otherId, @PathVariable int personalId) {
+                , @PathVariable UUID otherId, @PathVariable UUID personalId) {
             OtherDetailDto personalDetailDto1 = otherDetailService.updateOtherDetail(otherDetailDto, otherId, personalId);
             return new ResponseEntity<>(personalDetailDto1, HttpStatus.CREATED);
         }
 
 
         @GetMapping("/{otherId}")
-        public ResponseEntity<OtherDetailDto> getPersonalDetail(@PathVariable int otherId) {
+        public ResponseEntity<OtherDetailDto> getPersonalDetail(@PathVariable UUID otherId) {
             OtherDetailDto personalDetailDto1 = otherDetailService.getOtherDetailById(otherId);
             return new ResponseEntity<>(personalDetailDto1, HttpStatus.ACCEPTED);
         }
 
         @DeleteMapping("/{otherId}")
-        public ResponseEntity<String> deletePersonalDetail(@PathVariable int otherId) {
+        public ResponseEntity<String> deletePersonalDetail(@PathVariable UUID otherId) {
             String res = otherDetailService.deleteOtherDetail(otherId);
             return new ResponseEntity<>(res, HttpStatus.ACCEPTED);
         }

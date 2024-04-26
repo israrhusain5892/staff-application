@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Date;
+import java.util.UUID;
 
 @Entity
 @Data
@@ -14,8 +15,8 @@ import java.util.Date;
 @NoArgsConstructor
 public class PersonalDetail {
      @Id
-     @GeneratedValue(strategy = GenerationType.IDENTITY)
-     private int personalId;
+     @GeneratedValue(strategy = GenerationType.UUID)
+     private UUID personalId;
     private String firstName;
     private String middleName;
     private String lastName;

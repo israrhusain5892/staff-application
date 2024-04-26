@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class OtherDetailServiceImpl implements OtherDetailService {
@@ -27,9 +28,9 @@ public class OtherDetailServiceImpl implements OtherDetailService {
       @Autowired
       private OtherDetailRepository otherDetailRepository;
     @Override
-    public OtherDetailDto addOtherDetail(OtherDetailDto otherDetailDto, Integer personalId) {
-        PersonalDetail personalDetail=personalDetailRepository.findById(personalId).
-                orElseThrow(() -> new ResourceNotFoundException("staffDetail", "Id", personalId));
+    public OtherDetailDto addOtherDetail(OtherDetailDto otherDetailDto, UUID personalId) {
+        PersonalDetail personalDetail=personalDetailRepository.findById(personalId).get();
+//                orElseThrow(() -> new ResourceNotFoundException("staffUUIDDetail", "Id", personalId));
          OtherDetail otherDetail=modelMapper.map(otherDetailDto,OtherDetail.class) ;
          otherDetail.setPersonalDetail(personalDetail);
          OtherDetail saved=otherDetailRepository.save(otherDetail);
@@ -39,7 +40,7 @@ public class OtherDetailServiceImpl implements OtherDetailService {
     }
 
     @Override
-    public OtherDetailDto updateOtherDetail(OtherDetailDto otherDetailDto, Integer otherId,Integer personalId) {
+    public OtherDetailDto updateOtherDetail(OtherDetailDto otherDetailDto, UUID otherId,UUID personalId) {
              OtherDetail otherDetail=otherDetailRepository.findById(otherId).get();
              PersonalDetail personalDetail=personalDetailRepository.findById(personalId).get();
 
@@ -58,7 +59,7 @@ public class OtherDetailServiceImpl implements OtherDetailService {
     }
 
     @Override
-    public OtherDetailDto getOtherDetailById(Integer otherId) {
+    public OtherDetailDto getOtherDetailById(UUID otherId) {
            OtherDetail otherDetail=otherDetailRepository.findById(otherId).get();
         OtherDetailDto otherDetailDto1=modelMapper.map(otherDetail,OtherDetailDto.class);
          otherDetailDto1.setPersonalDetailDto(modelMapper.map(otherDetail.getPersonalDetail(),PersonalDetailDto.class));
@@ -66,7 +67,7 @@ public class OtherDetailServiceImpl implements OtherDetailService {
     }
 
     @Override
-    public String deleteOtherDetail(Integer personalId) {
+    public String deleteOtherDetail(UUID personalId) {
             otherDetailRepository.deleteById(personalId);
             return "other detail deleted successfully";
     }

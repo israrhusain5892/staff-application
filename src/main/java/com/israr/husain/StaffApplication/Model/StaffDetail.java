@@ -10,6 +10,8 @@ import lombok.NoArgsConstructor;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
+
 
 @Entity
 @Data
@@ -17,8 +19,8 @@ import java.util.List;
 @AllArgsConstructor
 public class StaffDetail {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int staffId;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID staffId;
 
     private String employment_Status;
     private String staffType;

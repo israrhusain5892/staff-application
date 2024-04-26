@@ -8,6 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Date;
+import java.util.UUID;
 
 @Entity
 @Data
@@ -15,8 +16,8 @@ import java.util.Date;
 @AllArgsConstructor
 public class OtherDetail {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int otherId;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID otherId;
     private String aadhaarNumber;
     private String panNumber;
     @JsonFormat(pattern="dd-MM-yyyy")

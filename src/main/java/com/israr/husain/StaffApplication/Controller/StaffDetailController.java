@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @CrossOrigin
@@ -24,18 +25,18 @@ public class StaffDetailController {
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<StaffDetailDto> updateStaff(@RequestBody StaffDetailDto staffDetailDto,@PathVariable int id){
+    public ResponseEntity<StaffDetailDto> updateStaff(@RequestBody StaffDetailDto staffDetailDto,@PathVariable UUID id){
         StaffDetailDto staffDetailDto1=staffService.updateStaffDetail(staffDetailDto,id);
         return new ResponseEntity<>(staffDetailDto1, HttpStatus.ACCEPTED);
     }
     @GetMapping("/{id}")
-    public ResponseEntity<StaffDetailDto> getStaffDetailById(@PathVariable int id){
+    public ResponseEntity<StaffDetailDto> getStaffDetailById(@PathVariable UUID id){
         StaffDetailDto staffDetailDto1=staffService.getStaffDetailById(id);
         return new ResponseEntity<>(staffDetailDto1, HttpStatus.CREATED);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteStaffDetail(@PathVariable int id){
+    public ResponseEntity<String> deleteStaffDetail(@PathVariable UUID id){
            String res=staffService.deleteStaffDetail(id);
            return new ResponseEntity<>(res,HttpStatus.MOVED_PERMANENTLY);
     }

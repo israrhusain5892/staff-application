@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class StaffServiceImpl implements StaffService {
@@ -29,9 +30,9 @@ public class StaffServiceImpl implements StaffService {
     }
 
     @Override
-    public StaffDetailDto updateStaffDetail(StaffDetailDto staffDetailDto, Integer id) {
-           StaffDetail staffDetail=staffRepository.findById(id).
-                   orElseThrow(()->new ResourceNotFoundException("staffDetail","Id",id));
+    public StaffDetailDto updateStaffDetail(StaffDetailDto staffDetailDto, UUID id) {
+           StaffDetail staffDetail=staffRepository.findById(id).get();
+//                   orElseThrow(()->new ResourceNotFoundException("staffDetail","Id",id));
 //           staffDetail.setAadhaarNumber(staffDetailDto.getAadhaarNumber());
            staffDetail.setStaffDepartment(staffDetailDto.getStaffDepartment());
            staffDetail.setStaffType(staffDetailDto.getStaffType());
@@ -64,14 +65,15 @@ public class StaffServiceImpl implements StaffService {
     }
 
     @Override
-    public StaffDetailDto getStaffDetailById(Integer id) {
-          StaffDetail staffDetail=staffRepository.findById(id).
-                  orElseThrow(()->new ResourceNotFoundException("staffDetail","Id",id));
+    public StaffDetailDto getStaffDetailById(UUID id) {
+          StaffDetail staffDetail=staffRepository.findById(id).get();
+//                  orElseThrow(()->new ResourceNotFoundException("staffDetail","Id",id));
+
           return modelMapper.map(staffDetail,StaffDetailDto.class);
     }
 
     @Override
-    public String deleteStaffDetail(Integer id) {
+    public String deleteStaffDetail(UUID id) {
           staffRepository.deleteById(id);
           return "staff detail deleted successfully";
     }

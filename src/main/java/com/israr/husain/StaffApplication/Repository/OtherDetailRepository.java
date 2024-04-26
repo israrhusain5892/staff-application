@@ -4,6 +4,8 @@ import com.israr.husain.StaffApplication.Model.OtherDetail;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.UUID;
+
 @Repository
-public interface OtherDetailRepository extends JpaRepository<OtherDetail,Integer> {
+public interface OtherDetailRepository extends JpaRepository<OtherDetail, UUID> {
 }

@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Date;
+import java.util.UUID;
 
 
 @Data
@@ -13,7 +14,7 @@ import java.util.Date;
 @AllArgsConstructor
 public class StaffDetailDto {
 
-    private int id;
+    private UUID id;
     private String employment_Status;
     private String staffType;
     private String staffDepartment;
